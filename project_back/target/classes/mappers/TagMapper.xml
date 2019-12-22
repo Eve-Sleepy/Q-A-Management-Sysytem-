@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.faq.persistences.TagDao">
+<select id="getTagIdNamesArr" resultType="java.util.Map">
+    select distinct name,id
+    from tags
+		where is_use=1;
+</select>
+<insert id="addTag" parameterType="com.example.faq.models.Tag"   useGeneratedKeys="true" keyProperty="id">
+     insert into tags(name,created_Time,is_use) values (#{name},#{createdTime},1) ;
+</insert>
+<select id="getTagList" resultType="com.example.faq.models.Tag">
+    select T.id,name
+    from tags as T,tagsfordocs as TD
+	where T.is_use=1 and TD.is_use=1 and T.id=TD.tag_id
+	group by T.id
+	ORDER BY count(*) DESC;
+</select>
+<select id="findTagListByIds" resultType="com.example.faq.models.Tag">
+    select *
+    from tags
+    <where>
+        <if test="tagIdGroup!=null ">
+        id in
+            <foreach collection="tagIdGroup" item="tagId" index="index" open="(" separator="," close=")">
+                #{tagId}
+            </foreach>
+        </if>
+
+    </where>
+</select>
+<select id="findTagIdByName" resultType="com.example.faq.models.Tag">
+        select *
+        from tags
+        where name = #{tagName};
+</select>
+</mapper>

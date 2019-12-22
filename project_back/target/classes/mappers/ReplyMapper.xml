@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.faq.persistences.ReplyDao">
+<insert id="insertReply" parameterType="com.example.faq.models.Reply" useGeneratedKeys="true" keyProperty="id">
+    insert into replies(doc_id,replier_id,reply_content,reply_time,is_use)
+     values (#{docId},#{replierId},#{replyContent},#{replyTime},1) ;
+</insert>
+<select id="selectReplyListByDocId" parameterType="java.lang.Integer" resultType="com.example.faq.models.Reply">
+    select *
+    from replies
+    where doc_id=#{docId} and is_use = 1
+    order by reply_time desc;
+</select>
+
+    <update id="deleteReplyByDocId" parameterType="java.lang.Integer" >
+    update replies set is_use=0 where doc_id=#{docId} and is_use = 1
+</update>
+    <update id="deleteReplyByReplyId" parameterType="java.lang.Integer" >
+    update replies set is_use=0 where id=#{replyId} and is_use = 1
+</update>
+
+</mapper>

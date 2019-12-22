@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.faq.persistences.TagForDocDao">
+    <select id="findTagsByDocId" resultType="com.example.faq.models.Tag">
+    select t.id,t.name
+    from tags as t,tagsfordocs as tf
+    where tf.doc_id=#{docId} and tf.is_use=1 and t.id=tf.tag_id and t.is_use=1;
+</select>
+    <insert id="insertTagsForDoc" parameterType="com.example.faq.models.TagForDoc" useGeneratedKeys="true" keyProperty="id">
+        insert into tagsfordocs(doc_id,tag_id,created_Time,is_use) values (#{docId},#{tagId},#{createdTime},1) ;
+    </insert>
+<!--    <update id="deleteTagsForDoc" parameterType="java.lang.Integer">-->
+<!--            update tagsfordocs set is_use=0-->
+<!--            where doc_id=#{id};-->
+<!--        </update>-->
+    <delete id="deleteTagsForDoc" parameterType="java.lang.Integer">
+                delete from tagsfordocs
+                where doc_id=#{id};
+    </delete>
+</mapper>
