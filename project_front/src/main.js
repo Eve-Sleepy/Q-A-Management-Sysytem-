@@ -11,30 +11,30 @@ import axios from 'axios'
 import apiConfig from '../config/api.config'
 
 import {
-  Pagination,
-  Dialog,
-  Dropdown,
-  DropdownMenu,
-  DropdownItem,
-  Input,
-  InputNumber,
-  Select,
-  Option,
-  OptionGroup,
-  Button,
-  ButtonGroup,
-  Form,
-  FormItem,
-  Tag,
-  Icon,
-  Badge,
-  ColorPicker,
-  Transfer,
-  Popover,
-  Divider,
-  MessageBox,
-  Message,
-  Loading
+    Pagination,
+    Dialog,
+    Dropdown,
+    DropdownMenu,
+    DropdownItem,
+    Input,
+    InputNumber,
+    Select,
+    Option,
+    OptionGroup,
+    Button,
+    ButtonGroup,
+    Form,
+    FormItem,
+    Tag,
+    Icon,
+    Badge,
+    ColorPicker,
+    Transfer,
+    Popover,
+    Divider,
+    MessageBox,
+    Message,
+    Loading
 } from 'element-ui';
 
 
@@ -65,12 +65,12 @@ Vue.use(Loading.directive);
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$prompt = MessageBox.prompt;
-Vue.prototype.$confirm=MessageBox.confirm;
-Vue.prototype.$alert=MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$alert = MessageBox.alert;
 Vue.prototype.$message = Message;
 
 
-Vue.prototype.$axios= axios
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 axios.defaults.baseURL = apiConfig.baseUrl;
 axios.defaults.withCredentials = false;
@@ -78,11 +78,11 @@ axios.defaults.withCredentials = false;
 
 /* eslint-disable no-new */
 //配置对象的属性名都是一些确定的名称，不能随便修改
-new Vue({   
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+new Vue({
+    el: '#app',
+    router,
+    components: {App},
+    template: '<App/>'
 })
 
 

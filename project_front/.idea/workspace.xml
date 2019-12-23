@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="750932c3-dfd9-4996-b40d-614b209f4fc2" name="Default Changelist" comment="" />
+    <list default="true" id="750932c3-dfd9-4996-b40d-614b209f4fc2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/build.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DocumentList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MsgList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MsgList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SiftDoc.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SiftDoc.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/error/error.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/error/error.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/index/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Search.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MainContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainContent.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/PersonalSpace.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PersonalSpace.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index.vue" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +32,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1UYY8aWT8oKcEWfMY9W1j89iSvr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -114,11 +134,23 @@
       <workItem from="1576943025679" duration="32000" />
       <workItem from="1576944278216" duration="268000" />
       <workItem from="1576944756246" duration="3976000" />
+      <workItem from="1577110128011" duration="132000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="1104" y="260" key="#Inspections" timestamp="1576812038634">

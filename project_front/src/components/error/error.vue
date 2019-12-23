@@ -12,7 +12,7 @@
         name: "error",
         methods: {
             toLogin() {
-                this.$router.push({path:'/login'})
+                this.$router.push({path: '/login'})
             }
         }
     }
@@ -20,12 +20,13 @@
 </script>
 
 <style scoped>
-    .jumpBtn{
+    .jumpBtn {
         position: absolute;
         left: 430px;
-        top:540px;
+        top: 540px;
     }
-    .img{
+
+    .img {
         width: 100%;
         height: 100%;
     }

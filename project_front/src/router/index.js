@@ -82,13 +82,13 @@ const router = new Router({
 
 
 //快乐挂载路由导航守卫
-router.beforeEach((to,from,next) => {
-    if(to.path === '/login' || to.path === '/' || to.path === '/error') {
+router.beforeEach((to, from, next) => {
+    if (to.path === '/login' || to.path === '/' || to.path === '/error') {
         next()
         return
     }
     const authorizationStr = window.localStorage.getItem('Authorization')
-    if(!authorizationStr) return next('/error')
+    if (!authorizationStr) return next('/error')
     next()
 })
 
