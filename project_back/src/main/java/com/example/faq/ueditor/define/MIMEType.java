@@ -8,29 +8,25 @@ package com.example.faq.ueditor.define;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MIMEType
-{
+public class MIMEType {
 
-    public MIMEType()
-    {
+    public MIMEType() {
     }
 
-    public static String getSuffix(String mime)
-    {
-        return (String)types.get(mime);
+    public static String getSuffix(String mime) {
+        return (String) types.get(mime);
     }
 
     public static final Map types = new HashMap() {
 
-            
-            {
-                put("image/gif", ".gif");
-                put("image/jpeg", ".jpg");
-                put("image/jpg", ".jpg");
-                put("image/png", ".png");
-                put("image/bmp", ".bmp");
-            }
-    }
-;
+
+        {
+            put("image/gif", ".gif");
+            put("image/jpeg", ".jpg");
+            put("image/jpg", ".jpg");
+            put("image/png", ".png");
+            put("image/bmp", ".bmp");
+        }
+    };
 
 }

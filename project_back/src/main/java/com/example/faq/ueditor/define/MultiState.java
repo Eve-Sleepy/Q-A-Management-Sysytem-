@@ -6,17 +6,16 @@
 package com.example.faq.ueditor.define;
 
 import com.example.faq.ueditor.Encoder;
+
 import java.util.*;
 
 // Referenced classes of package com.example.faq.ueditor.define:
 //            State, AppInfo
 
 public class MultiState
-    implements State
-{
+        implements State {
 
-    public MultiState(boolean state)
-    {
+    public MultiState(boolean state) {
         this.state = false;
         info = null;
         intMap = new HashMap();
@@ -25,8 +24,7 @@ public class MultiState
         this.state = state;
     }
 
-    public MultiState(boolean state, String info)
-    {
+    public MultiState(boolean state, String info) {
         this.state = false;
         this.info = null;
         intMap = new HashMap();
@@ -36,8 +34,7 @@ public class MultiState
         this.info = info;
     }
 
-    public MultiState(boolean state, int infoKey)
-    {
+    public MultiState(boolean state, int infoKey) {
         this.state = false;
         info = null;
         intMap = new HashMap();
@@ -47,42 +44,38 @@ public class MultiState
         info = AppInfo.getStateInfo(infoKey);
     }
 
-    public boolean isSuccess()
-    {
+    public boolean isSuccess() {
         return state;
     }
 
-    public void addState(State state)
-    {
+    public void addState(State state) {
         stateList.add(state.toJSONString());
     }
 
-    public void putInfo(String name, String val)
-    {
+    public void putInfo(String name, String val) {
         infoMap.put(name, val);
     }
 
-    public String toJSONString()
-    {
+    public String toJSONString() {
         String stateVal = isSuccess() ? AppInfo.getStateInfo(0) : info;
         StringBuilder builder = new StringBuilder();
         builder.append((new StringBuilder("{\"state\": \"")).append(stateVal).append("\"").toString());
-        for(Iterator iterator = intMap.keySet().iterator(); iterator.hasNext(); builder.append((new StringBuilder(",\"")).append(stateVal).append("\": ").append(intMap.get(stateVal)).toString()))
-            stateVal = (String)iterator.next();
+        for (Iterator iterator = intMap.keySet().iterator(); iterator.hasNext(); builder.append((new StringBuilder(",\"")).append(stateVal).append("\": ").append(intMap.get(stateVal)).toString()))
+            stateVal = (String) iterator.next();
 
-        for(Iterator iterator = infoMap.keySet().iterator(); iterator.hasNext(); builder.append((new StringBuilder(",\"")).append(stateVal).append("\": \"").append((String)infoMap.get(stateVal)).append("\"").toString()))
-            stateVal = (String)iterator.next();
+        for (Iterator iterator = infoMap.keySet().iterator(); iterator.hasNext(); builder.append((new StringBuilder(",\"")).append(stateVal).append("\": \"").append((String) infoMap.get(stateVal)).append("\"").toString()))
+            stateVal = (String) iterator.next();
 
         builder.append(", list: [");
-        for(Iterator iterator = stateList.iterator(); iterator.hasNext(); builder.append((new StringBuilder(String.valueOf((String)iterator.next()))).append(",").toString()));
-        if(stateList.size() > 0)
+        for (Iterator iterator = stateList.iterator(); iterator.hasNext(); builder.append((new StringBuilder(String.valueOf((String) iterator.next()))).append(",").toString()))
+            ;
+        if (stateList.size() > 0)
             builder.deleteCharAt(builder.length() - 1);
         builder.append(" ]}");
         return Encoder.toUnicode(builder.toString());
     }
 
-    public void putInfo(String name, long val)
-    {
+    public void putInfo(String name, long val) {
         intMap.put(name, Long.valueOf(val));
     }
 

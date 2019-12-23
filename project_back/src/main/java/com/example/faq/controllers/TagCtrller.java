@@ -22,29 +22,30 @@ public class TagCtrller {
 
     @Autowired
     private TagService tagService;
+
     @GetMapping("list")
     @ResponseBody
     public ApiResult tagList() {
         ApiResult apiResult = new ApiResult();
         //tagDao.getTagList返回的是标签类型列表组
-        List<Tag> tags= tagService.findTags();
-        if(tags==null||tags.size()==0){
+        List<Tag> tags = tagService.findTags();
+        if (tags == null || tags.size() == 0) {
             apiResult.setStatus(500);
             apiResult.setMsg("列表返回失败或者不存在标签");
             return apiResult;
         }
-        Map<String,Object> data=new LinkedHashMap<>();
-        data.put("total",tags.size());
-        ArrayList<Map <String,Object>> arr=new ArrayList<>();
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("total", tags.size());
+        ArrayList<Map<String, Object>> arr = new ArrayList<>();
         //将每个标签对象以特定格式保存到tag对象中
-        for(Tag tag: tags){
-            Map <String,Object> item=new LinkedHashMap<>();
-            item.put("id",tag.getId());
-            item.put("name",tag.getName());
+        for (Tag tag : tags) {
+            Map<String, Object> item = new LinkedHashMap<>();
+            item.put("id", tag.getId());
+            item.put("name", tag.getName());
             arr.add(item);
         }
 
-        data.put("arr",arr);
+        data.put("arr", arr);
 
         apiResult.setStatus(200);
         apiResult.setData(data);

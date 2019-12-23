@@ -20,8 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 
-
-
 public class BinaryUploader {
 
     public static final State save(HttpServletRequest request, Map<String, Object> conf) {
@@ -39,7 +37,7 @@ public class BinaryUploader {
             String originFileName = multipartFile.getOriginalFilename();
             String suffix = FileType.getSuffixByFilename(originFileName);
 
-            originFileName = originFileName.substring(0,originFileName.length() - suffix.length());
+            originFileName = originFileName.substring(0, originFileName.length() - suffix.length());
             savePath = savePath + suffix;
 
             long maxSize = ((Long) conf.get("maxSize")).longValue();
@@ -54,7 +52,7 @@ public class BinaryUploader {
             savePath = PathFormat.parse(savePath, originFileName);
             String physicalPath = (String) conf.get("saveRootPath") + savePath;
             InputStream is = multipartFile.getInputStream();
-            State storageState = StorageManager.saveFileByInputStream(is,physicalPath, maxSize);
+            State storageState = StorageManager.saveFileByInputStream(is, physicalPath, maxSize);
             is.close();
 
             //
@@ -63,7 +61,6 @@ public class BinaryUploader {
                 storageState.putInfo("type", suffix);
                 storageState.putInfo("original", originFileName + suffix);
             }
-
 
 
             return storageState;
@@ -77,11 +74,9 @@ public class BinaryUploader {
     }
 
 
-
     private static boolean validType(String type, String[] allowTypes) {
 
         List<String> list = Arrays.asList(allowTypes);
-
 
 
         return list.contains(type);

@@ -8,10 +8,16 @@ import java.util.List;
 @Repository
 public interface UserDao {
     User getUser(Integer id);
+
     List<User> getUserdropDownlist();
+
     Integer userResgister(User user);
+
     Integer updatePassword(User user);
+
     User findByUserId(Integer id);
+
     User findByUserName(String name);
+
     User findUserByUserRealname(String realname);
 }

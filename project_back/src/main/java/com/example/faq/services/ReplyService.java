@@ -14,18 +14,19 @@ public class ReplyService {
     @Autowired
     private ReplyDao replyDao;
 
-    public List<Reply> findReplyListByDocId(Integer docId){
-            return replyDao.selectReplyListByDocId(docId);
+    public List<Reply> findReplyListByDocId(Integer docId) {
+        return replyDao.selectReplyListByDocId(docId);
     }
 
-    public Integer addReply(Reply reply){
+    public Integer addReply(Reply reply) {
         return replyDao.insertReply(reply);
     }
-    public Integer removeReplyByDocId(Integer docId){
+
+    public Integer removeReplyByDocId(Integer docId) {
         return replyDao.deleteReplyByDocId(docId);
     }
 
-    public Integer removeReplyByReplyId(Integer replyId){
+    public Integer removeReplyByReplyId(Integer replyId) {
         return replyDao.deleteReplyByReplyId(replyId);
     }
 }

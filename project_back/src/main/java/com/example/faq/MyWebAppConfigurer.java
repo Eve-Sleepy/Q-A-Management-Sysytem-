@@ -11,10 +11,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class MyWebAppConfigurer implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String location = "file:"+System.getProperty("user.dir").replace("\\","/")+"/upload/image/";
+        String location = "file:" + System.getProperty("user.dir").replace("\\", "/") + "/upload/image/";
         registry.addResourceHandler("/upload/image/**").addResourceLocations(location);
 
-        String location2 = "file:"+System.getProperty("user.dir").replace("\\","/")+"/upload/file/";
+        String location2 = "file:" + System.getProperty("user.dir").replace("\\", "/") + "/upload/file/";
         registry.addResourceHandler("/upload/file/**").addResourceLocations(location2);
 
     }

@@ -28,7 +28,7 @@ public class DocService {
     private TagForDocService tagForDocService;
 
 
-    public Object[] findDocList(DocSearchDto docSearchDto){
+    public Object[] findDocList(DocSearchDto docSearchDto) {
         Object[] docList = new Object[2];
         // 1、获取分页查询
         Integer perPage = docSearchDto.getPerPage();
@@ -37,7 +37,7 @@ public class DocService {
         // 2、count未分页时的文档数量totalDoc
         docSearchDto.setPerPage(null);
         docSearchDto.setCurrentPage(null);
-        List<Doc> docSelect=docDao.selectDocList(docSearchDto);
+        List<Doc> docSelect = docDao.selectDocList(docSearchDto);
         Integer totalDoc = docSelect.size();
 
         // 3、筛选进行分页后的文档
@@ -51,22 +51,22 @@ public class DocService {
         return docList;
     }
 
-    public Integer addDocUserInfo(DocCreateDto docCreateDto){
+    public Integer addDocUserInfo(DocCreateDto docCreateDto) {
         Integer state = docDao.insertDoc(docCreateDto);
         return state;
     }
 
-    public Integer editDocUserInfo(DocEditDto docEditDto){
+    public Integer editDocUserInfo(DocEditDto docEditDto) {
         Integer state = docDao.updateDoc(docEditDto);
         return state;
     }
 
-    public Doc findDocById(Integer docId){
+    public Doc findDocById(Integer docId) {
         Doc doc = docDao.findDocById(docId);
         return doc;
     }
 
-    public Integer removeDocById(Integer docId){
+    public Integer removeDocById(Integer docId) {
         msgService.removeMsgByDocId(docId);
         replyService.removeReplyByDocId(docId);
         tagForDocService.deleteTagsForDoc(docId);
@@ -74,18 +74,18 @@ public class DocService {
         return state;
     }
 
-    public Integer getDeptBelongNumByQuery(Map<String,Object> deptQuery){
+    public Integer getDeptBelongNumByQuery(Map<String, Object> deptQuery) {
 
         Integer num = docDao.getDeptBelongNum(deptQuery);
-        if(num != null){
+        if (num != null) {
             return num;
-        }else{
+        } else {
             return 0;
         }
 
     }
 
-    public Integer deleteDocByProductId(Integer id){
+    public Integer deleteDocByProductId(Integer id) {
         Doc doc = docDao.findDocByProductId(id);
         msgService.removeMsgByDocId(doc.getId());
         replyService.removeReplyByDocId(doc.getId());

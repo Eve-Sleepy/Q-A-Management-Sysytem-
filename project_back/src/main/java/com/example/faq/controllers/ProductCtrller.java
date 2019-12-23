@@ -30,16 +30,16 @@ public class ProductCtrller {
     public ApiResult productDropDownlist() {
 
         ApiResult apiResult = new ApiResult();
-        ArrayList<Map<String,Object>> datas = new ArrayList<>();
+        ArrayList<Map<String, Object>> datas = new ArrayList<>();
 
         ArrayList<Product> products = productService.findProducts();
-        if(products==null||products.size()==0){
+        if (products == null || products.size() == 0) {
             apiResult.setStatus(501);
             apiResult.setMsg("列表返回失败或者不存在产品");
             return apiResult;
         }
-        for(Product product:products){
-            Map<String,Object> data=new LinkedHashMap<>();
+        for (Product product : products) {
+            Map<String, Object> data = new LinkedHashMap<>();
             data.put("id", product.getId());
             data.put("name", product.getName());
 
@@ -58,42 +58,42 @@ public class ProductCtrller {
         ApiResult apiResult = new ApiResult();
         ArrayList<Product> products = productService.findProducts();
 
-        if(products==null||products.size()==0){
+        if (products == null || products.size() == 0) {
             apiResult.setStatus(501);
             apiResult.setMsg("列表返回失败或者不存在产品");
             return apiResult;
         }
-        Map<String,Object> data=new LinkedHashMap<>();
-        data.put("total",products.size());
-        ArrayList<Map <String,Object>> arr=new ArrayList<>();
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("total", products.size());
+        ArrayList<Map<String, Object>> arr = new ArrayList<>();
 
-        for(Product product: products){
-            Map <String,Object> item = new LinkedHashMap<>();
-            item.put("productId",product.getId());
+        for (Product product : products) {
+            Map<String, Object> item = new LinkedHashMap<>();
+            item.put("productId", product.getId());
             item.put("name", product.getName());
             item.put("color", product.getColor());
 
             Map<String, Object> deptQuery = new LinkedHashMap<>();
-            deptQuery.put("productId",product.getId());
+            deptQuery.put("productId", product.getId());
             // 1、获取designNum设计部门文档数量
-            deptQuery.put("deptBelong",0);
-            item.put("designNum",docService.getDeptBelongNumByQuery(deptQuery));
+            deptQuery.put("deptBelong", 0);
+            item.put("designNum", docService.getDeptBelongNumByQuery(deptQuery));
 
             // 2、获取codeNum开发部门文档数量
-            deptQuery.put("deptBelong",1);
-            item.put("codeNum",docService.getDeptBelongNumByQuery(deptQuery));
+            deptQuery.put("deptBelong", 1);
+            item.put("codeNum", docService.getDeptBelongNumByQuery(deptQuery));
 
             // 3、获取implementNum实施部门文档数量
-            deptQuery.put("deptBelong",2);
-            item.put("implementNum",docService.getDeptBelongNumByQuery(deptQuery));
+            deptQuery.put("deptBelong", 2);
+            item.put("implementNum", docService.getDeptBelongNumByQuery(deptQuery));
 
             // 4、获取testNum测试部门文档数量
-            deptQuery.put("deptBelong",3);
-            item.put("testNum",docService.getDeptBelongNumByQuery(deptQuery));
+            deptQuery.put("deptBelong", 3);
+            item.put("testNum", docService.getDeptBelongNumByQuery(deptQuery));
 
             arr.add(item);
         }
-        data.put("arr",arr);
+        data.put("arr", arr);
 
         apiResult.setStatus(200);
         apiResult.setData(data);
@@ -107,16 +107,16 @@ public class ProductCtrller {
         ApiResult apiResult = new ApiResult();
         Product product = productService.findProductById(productId);
 
-        if(product==null){
+        if (product == null) {
             apiResult.setStatus(501);
             apiResult.setMsg("产品内容返回失败或者不存在产品");
             return apiResult;
         }
 
-        Map<String,Object> data=new LinkedHashMap<>();
-        data.put("productName",product.getName());
-        data.put("imageUrl",product.getImageUrl());
-        data.put("describeInfo",product.getDescribeInfo());
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("productName", product.getName());
+        data.put("imageUrl", product.getImageUrl());
+        data.put("describeInfo", product.getDescribeInfo());
 
         apiResult.setStatus(200);
         apiResult.setData(data);
@@ -128,16 +128,16 @@ public class ProductCtrller {
     @ResponseBody
     public ApiResult createProduct(@RequestBody ProductCreateDto productCreateDto) {
         ApiResult apiResult = new ApiResult();
-        Date now=new Date();
+        Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String tablename=dateFormat.format(now);
+        String tablename = dateFormat.format(now);
 
         productCreateDto.setCreatedTime(tablename);
 
-        if(productService.addProduct(productCreateDto) == 0){
+        if (productService.addProduct(productCreateDto) == 0) {
             apiResult.setStatus(501);
             apiResult.setMsg("新建产品失败");
-             return apiResult;
+            return apiResult;
         }
 
         apiResult.setStatus(200);
@@ -149,13 +149,13 @@ public class ProductCtrller {
     @ResponseBody
     public ApiResult updateProduct(@RequestBody ProductEditDto productEditDto) {
         ApiResult apiResult = new ApiResult();
-        Date now=new Date();
+        Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String tablename=dateFormat.format(now);
+        String tablename = dateFormat.format(now);
 
         productEditDto.setCreatedTime(tablename);
 
-        if(productService.modifyProduct(productEditDto) == 0){
+        if (productService.modifyProduct(productEditDto) == 0) {
             apiResult.setStatus(501);
             apiResult.setMsg("修改产品失败");
             return apiResult;
@@ -163,7 +163,7 @@ public class ProductCtrller {
 
         apiResult.setStatus(200);
         Map<String, Object> map = new LinkedHashMap<>();
-        map.put("productId",productEditDto.getId());
+        map.put("productId", productEditDto.getId());
         apiResult.setData(map);
         apiResult.setMsg("修改产品成功");
         return apiResult;
@@ -175,7 +175,7 @@ public class ProductCtrller {
         ApiResult apiResult = new ApiResult();
 
         // 1、删除产品的同时将所有有关的文档软删除
-        if(productService.deleteProduct(productId) == 0){
+        if (productService.deleteProduct(productId) == 0) {
             apiResult.setStatus(501);
             apiResult.setMsg("数据库更新失败");
             return apiResult;

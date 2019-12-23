@@ -6,7 +6,8 @@
     from tags as t,tagsfordocs as tf
     where tf.doc_id=#{docId} and tf.is_use=1 and t.id=tf.tag_id and t.is_use=1;
 </select>
-    <insert id="insertTagsForDoc" parameterType="com.example.faq.models.TagForDoc" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertTagsForDoc" parameterType="com.example.faq.models.TagForDoc" useGeneratedKeys="true"
+            keyProperty="id">
         insert into tagsfordocs(doc_id,tag_id,created_Time,is_use) values (#{docId},#{tagId},#{createdTime},1) ;
     </insert>
     <delete id="deleteTagsForDoc" parameterType="java.lang.Integer">

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.faq.persistences.DocDao">
-<select id="findDocById" resultType="com.example.faq.models.Doc">
+    <select id="findDocById" resultType="com.example.faq.models.Doc">
     select *
     from docs
     where id=#{id} and is_use=1;
 </select>
-<select id="findDocByProductId" resultType="com.example.faq.models.Doc">
+    <select id="findDocByProductId" resultType="com.example.faq.models.Doc">
     select *
     from docs
     where product_id=#{id};
 </select>
-<select id="selectDocList" resultType="com.example.faq.models.Doc">
-    select *
-    from docs
+    <select id="selectDocList" resultType="com.example.faq.models.Doc">
+        select *
+        from docs
         <where>
             <if test="docSearchDto.keyword!=null and docSearchDto.keyword!=''">
                 title like concat("%",#{docSearchDto.keyword},"%")
@@ -31,9 +31,9 @@
             and docs.is_use=1
             <if test="docSearchDto.tagGroup!=null  ">
                 and id in (
-                        select doc_id
-                        from tagsfordocs
-                        where  tagsfordocs.tag_id in
+                select doc_id
+                from tagsfordocs
+                where tagsfordocs.tag_id in
                 <foreach collection="docSearchDto.tagGroup" item="tagId" index="index" open="(" separator="," close=")">
                     #{tagId}
                 </foreach>
@@ -42,20 +42,20 @@
 
         </where>
 
-         <choose>
-             <when test="docSearchDto.sortway!=null and docSearchDto.sortway==1 ">
-                 ORDER BY operation_time ASC
-             </when>
-             <otherwise>
-                    ORDER BY operation_time DESC
+        <choose>
+            <when test="docSearchDto.sortway!=null and docSearchDto.sortway==1 ">
+                ORDER BY operation_time ASC
+            </when>
+            <otherwise>
+                ORDER BY operation_time DESC
             </otherwise>
         </choose>
         <if test="docSearchDto.currentPage!=null and docSearchDto.currentPage!=0 and docSearchDto.perPage!=null and docSearchDto.perPage!=0">
             LIMIT ${(docSearchDto.currentPage-1)*docSearchDto.perPage},${docSearchDto.perPage}
         </if>
-</select>
+    </select>
 
-<update id="deleteDoc" parameterType="java.lang.Integer">
+    <update id="deleteDoc" parameterType="java.lang.Integer">
         update docs set is_use=0
         where id=#{id};
 </update>
@@ -67,17 +67,17 @@
             GROUP BY dept_belong
             having dept_belong = #{deptQuery.deptBelong}
         </select>
-<insert id="insertDoc" parameterType="com.example.faq.dto.DocCreateDto" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertDoc" parameterType="com.example.faq.dto.DocCreateDto" useGeneratedKeys="true" keyProperty="id">
     insert into docs(title,author_id,product_id,edition,content,dept_belong,operation,operation_time,created_time,is_use)
      values (#{title},#{authorId},#{productId},#{edition},#{content},#{deptBelong},#{operation},#{operationTime},#{operationTime},1) ;
 </insert>
-<update id="updateDoc" parameterType="com.example.faq.dto.DocEditDto"   useGeneratedKeys="true" keyProperty="id">
+    <update id="updateDoc" parameterType="com.example.faq.dto.DocEditDto" useGeneratedKeys="true" keyProperty="id">
     update docs set title=#{title},product_id=#{productId},edition=#{edition},content=#{content},dept_belong=#{deptBelong},
     operation=#{operation},operation_time=#{operationTime},updated_time=#{operationTime},is_use=1
     where id=#{docId} ;
 </update>
 
-<update id="deleteDocByProductId" parameterType="java.lang.Integer">
+    <update id="deleteDocByProductId" parameterType="java.lang.Integer">
             update docs set is_use=0
             where product_id=#{productId};
  </update>

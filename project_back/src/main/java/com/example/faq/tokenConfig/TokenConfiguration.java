@@ -14,8 +14,8 @@ public class TokenConfiguration extends WebMvcConfigurerAdapter {
     }
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry ){
-      registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**").excludePathPatterns("/ueditor/ueditorConfig")
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(tokenInterceptor()).addPathPatterns("/**").excludePathPatterns("/ueditor/ueditorConfig")
                 .excludePathPatterns("/upload/file/*")
                 .excludePathPatterns("/upload/image/*")
                 .excludePathPatterns("/upload/video/*");

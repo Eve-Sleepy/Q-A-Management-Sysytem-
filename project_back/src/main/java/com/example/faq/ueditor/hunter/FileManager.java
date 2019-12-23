@@ -7,39 +7,36 @@ package com.example.faq.ueditor.hunter;
 
 import com.example.faq.ueditor.PathFormat;
 import com.example.faq.ueditor.define.*;
+
 import java.io.File;
 import java.util.*;
+
 import org.apache.commons.io.FileUtils;
 
-public class FileManager
-{
+public class FileManager {
 
-    public FileManager(Map conf)
-    {
+    public FileManager(Map conf) {
         dir = null;
         rootPath = null;
         allowFiles = null;
         count = 0;
-        rootPath = (String)conf.get("rootPath");
-        dir = (new StringBuilder(String.valueOf(rootPath))).append((String)conf.get("dir")).toString();
+        rootPath = (String) conf.get("rootPath");
+        dir = (new StringBuilder(String.valueOf(rootPath))).append((String) conf.get("dir")).toString();
         allowFiles = getAllowFiles(conf.get("allowFiles"));
-        count = ((Integer)conf.get("count")).intValue();
+        count = ((Integer) conf.get("count")).intValue();
     }
 
-    public State listFile(int index)
-    {
+    public State listFile(int index) {
         File dir = new File(this.dir);
         State state = null;
-        if(!dir.exists())
+        if (!dir.exists())
             return new BaseState(false, 302);
-        if(!dir.isDirectory())
+        if (!dir.isDirectory())
             return new BaseState(false, 301);
         Collection list = FileUtils.listFiles(dir, allowFiles, true);
-        if(index < 0 || index > list.size())
-        {
+        if (index < 0 || index > list.size()) {
             state = new MultiState(true);
-        } else
-        {
+        } else {
             Object fileList[] = Arrays.copyOfRange(list.toArray(), index, index + count);
             state = getState(fileList);
         }
@@ -48,19 +45,17 @@ public class FileManager
         return state;
     }
 
-    private State getState(Object files[])
-    {
+    private State getState(Object files[]) {
         MultiState state = new MultiState(true);
         BaseState fileState = null;
         File file = null;
         Object aobj[];
         int j = (aobj = files).length;
-        for(int i = 0; i < j; i++)
-        {
+        for (int i = 0; i < j; i++) {
             Object obj = aobj[i];
-            if(obj == null)
+            if (obj == null)
                 break;
-            file = (File)obj;
+            file = (File) obj;
             fileState = new BaseState(true);
             fileState.putInfo("url", PathFormat.format(getPath(file)));
             state.addState(fileState);
@@ -69,22 +64,19 @@ public class FileManager
         return state;
     }
 
-    private String getPath(File file)
-    {
+    private String getPath(File file) {
         String path = file.getAbsolutePath();
         return path.replace(rootPath, "/");
     }
 
-    private String[] getAllowFiles(Object fileExt)
-    {
+    private String[] getAllowFiles(Object fileExt) {
         String exts[] = null;
         String ext = null;
-        if(fileExt == null)
+        if (fileExt == null)
             return new String[0];
-        exts = (String[])fileExt;
+        exts = (String[]) fileExt;
         int i = 0;
-        for(int len = exts.length; i < len; i++)
-        {
+        for (int len = exts.length; i < len; i++) {
             ext = exts[i];
             exts[i] = ext.replace(".", "");
         }

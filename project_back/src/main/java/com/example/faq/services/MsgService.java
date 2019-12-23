@@ -13,26 +13,27 @@ import java.util.Map;
 public class MsgService {
     @Autowired
     private MsgDao msgdao;
-    public Integer addMsg(Msg msg){
+
+    public Integer addMsg(Msg msg) {
         return msgdao.insertMsg(msg);
     }
 
-    public List<Msg> findMsgListByReceiverId(Map<String,Object> query){
+    public List<Msg> findMsgListByReceiverId(Map<String, Object> query) {
 
-        return msgdao.selectMsgListByReceiverId((Integer)query.get("userId"),
-                                                (Integer)query.get("currentPage"),
-                                                (Integer)query.get("perPage"));
+        return msgdao.selectMsgListByReceiverId((Integer) query.get("userId"),
+                (Integer) query.get("currentPage"),
+                (Integer) query.get("perPage"));
     }
 
-    public Integer removeMsgByDocId(Integer docId){
+    public Integer removeMsgByDocId(Integer docId) {
         return msgdao.deleteMsgByDocId(docId);
     }
 
-    public Integer removeMsgByMsgId(Integer msgId){
+    public Integer removeMsgByMsgId(Integer msgId) {
         return msgdao.deleteMsgByMsgId(msgId);
     }
 
-    public Integer checkMsgByMsgId(Integer msgId){
+    public Integer checkMsgByMsgId(Integer msgId) {
         return msgdao.checkMsgByMsgId(msgId);
     }
 }

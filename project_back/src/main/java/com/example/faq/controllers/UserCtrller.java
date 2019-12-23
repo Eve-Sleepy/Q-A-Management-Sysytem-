@@ -1,4 +1,5 @@
 package com.example.faq.controllers;
+
 import com.example.faq.dto.UserLoginDto;
 import com.example.faq.models.ApiResult;
 import com.example.faq.models.Token;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@CrossOrigin(origins = "*",allowCredentials="true",allowedHeaders = "",methods = {})
+@CrossOrigin(origins = "*", allowCredentials = "true", allowedHeaders = "", methods = {})
 @Controller
 @RequestMapping("/api/user")
 public class UserCtrller {
@@ -28,22 +29,22 @@ public class UserCtrller {
 
     @RequestMapping("/auth")
     @ResponseBody
-    public ApiResult auth(@RequestBody UserLoginDto userLoginDto){
+    public ApiResult auth(@RequestBody UserLoginDto userLoginDto) {
         ApiResult apiResult = new ApiResult();
 
-        if(userLoginDto.getUsername().equals("") || userLoginDto.getPassword().equals("")){
+        if (userLoginDto.getUsername().equals("") || userLoginDto.getPassword().equals("")) {
             apiResult.setStatus(201);
             apiResult.setMsg("传入的用户名/密码为空！");
             return apiResult;
         }
 
-        User user= userService.findUserByUsername(userLoginDto.getUsername());
-        if(user==null){
+        User user = userService.findUserByUsername(userLoginDto.getUsername());
+        if (user == null) {
             apiResult.setStatus(202);
             apiResult.setMsg("用户不存在");
             return apiResult;
         }
-        if(!user.getPassword().equals(userLoginDto.getPassword())){
+        if (!user.getPassword().equals(userLoginDto.getPassword())) {
             apiResult.setStatus(203);
             apiResult.setMsg("密码不正确");
             return apiResult;
@@ -66,32 +67,32 @@ public class UserCtrller {
             token.setToken(TokenStr);
             token.setBuildtime(nowtime);
             token.setUserid(user.getId());
-            authorization=tokenService.updataToken(token);
+            authorization = tokenService.updataToken(token);
 
-        }else{
+        } else {
             //登陆就更新Token信息
             TokenStr = creatToken(user, date);
             token.setToken(TokenStr);
             token.setBuildtime(nowtime);
             token.setUserid(user.getId());
-            authorization=tokenService.updataToken(token);
+            authorization = tokenService.updataToken(token);
         }
-        if(authorization!=1){
+        if (authorization != 1) {
             apiResult.setStatus(501);
             apiResult.setMsg("数据库token插入失败");
             return apiResult;
         }
         Map<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("userId",user.getId());
-        map.put("realname",user.getRealname());
-        map.put("isAdmin",user.getIsAdmin());
-        map.put("Authorization",TokenStr);
+        map.put("userId", user.getId());
+        map.put("realname", user.getRealname());
+        map.put("isAdmin", user.getIsAdmin());
+        map.put("Authorization", TokenStr);
         apiResult.setData(map);
         apiResult.setMsg("登录成功");
         return apiResult;
     }
+
     /**
-     *
      * @param user
      * @param date
      * @return
@@ -107,9 +108,9 @@ public class UserCtrller {
                 // 设置过期时间
                 .setExpiration(new Date(date.getTime() + 1000 * 60 * 60 * 24 * 3))
                 // 设置内容
-                .claim("userId",String.valueOf(user.getId()) )
-                .claim("isAdmin",String.valueOf(user.getIsAdmin()) )
-                .claim("realname",String.valueOf(user.getRealname()) )
+                .claim("userId", String.valueOf(user.getId()))
+                .claim("isAdmin", String.valueOf(user.getIsAdmin()))
+                .claim("realname", String.valueOf(user.getRealname()))
                 // 设置签发人
                 .setIssuer("cyx")
                 // 签名，需要算法和key
@@ -120,28 +121,28 @@ public class UserCtrller {
 
     @RequestMapping("register")
     @ResponseBody
-    public ApiResult register(@RequestBody Map<String,Object> params){
+    public ApiResult register(@RequestBody Map<String, Object> params) {
         ApiResult apiResult = new ApiResult();
 
-        Date now=new Date();
+        Date now = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String tablename=dateFormat.format(now);
+        String tablename = dateFormat.format(now);
 
-        if(userService.findUserByUsername((String)params.get("username")) !=null){
+        if (userService.findUserByUsername((String) params.get("username")) != null) {
             apiResult.setStatus(201);
             apiResult.setMsg("用户名重复");
             return apiResult;
         }
-        if(userService.findUserByUserRealname((String)params.get("realname")) !=null){
+        if (userService.findUserByUserRealname((String) params.get("realname")) != null) {
             apiResult.setStatus(201);
             apiResult.setMsg("真实姓名重复");
             return apiResult;
         }
         User user = new User();
-        user.setUsername((String)params.get("username"));
-        user.setRealname((String)params.get("realname"));
+        user.setUsername((String) params.get("username"));
+        user.setRealname((String) params.get("realname"));
         user.setPassword("123456");
-        if(userService.addUser(user)!=1){
+        if (userService.addUser(user) != 1) {
             apiResult.setStatus(500);
             apiResult.setMsg("新建用户失败");
             return apiResult;
@@ -156,23 +157,23 @@ public class UserCtrller {
     @ResponseBody
     public ApiResult userDropDownList() {
         ApiResult apiResult = new ApiResult();
-        List<User> users=userService.findUsers();
-        if(users==null||users.size()==0){
+        List<User> users = userService.findUsers();
+        if (users == null || users.size() == 0) {
             apiResult.setStatus(500);
             apiResult.setMsg("列表返回失败或者不存在用户");
             return apiResult;
         }
 
-        Map<String,Object> data=new LinkedHashMap<>();
-        data.put("total",users.size());
-        ArrayList<Map <String,Object>> arr=new ArrayList<>();
-        for(User user:users){
-            Map <String,Object> item=new LinkedHashMap<>();
-            item.put("id",user.getId());
-            item.put("username",user.getRealname());
+        Map<String, Object> data = new LinkedHashMap<>();
+        data.put("total", users.size());
+        ArrayList<Map<String, Object>> arr = new ArrayList<>();
+        for (User user : users) {
+            Map<String, Object> item = new LinkedHashMap<>();
+            item.put("id", user.getId());
+            item.put("username", user.getRealname());
             arr.add(item);
         }
-        data.put("arr",arr);
+        data.put("arr", arr);
 
         apiResult.setStatus(200);
         apiResult.setData(data);
@@ -182,24 +183,24 @@ public class UserCtrller {
 
     @RequestMapping("editPwd")
     @ResponseBody
-    public ApiResult editPwd(@RequestBody Map<String,Object> params) {
+    public ApiResult editPwd(@RequestBody Map<String, Object> params) {
         ApiResult apiResult = new ApiResult();
 
         User user = new User();
         // 验证原先的密码与用户id
-        User user1 = userService.findUserById((Integer)params.get("userId"));
-        System.out.println("-----------------"+user1.getPassword());
-        System.out.println((String)params.get("oldPassword"));
-        if(!user1.getPassword().equals((String)params.get("oldPassword"))){
+        User user1 = userService.findUserById((Integer) params.get("userId"));
+        System.out.println("-----------------" + user1.getPassword());
+        System.out.println((String) params.get("oldPassword"));
+        if (!user1.getPassword().equals((String) params.get("oldPassword"))) {
             apiResult.setStatus(501);
             apiResult.setMsg("旧密码验证失败");
             return apiResult;
         }
-        user.setId((Integer)params.get("userId"));
-        user.setPassword((String)params.get("editPassword"));
+        user.setId((Integer) params.get("userId"));
+        user.setPassword((String) params.get("editPassword"));
 
-        Integer users=userService.editPwd(user);
-        if(userService.editPwd(user)==0){
+        Integer users = userService.editPwd(user);
+        if (userService.editPwd(user) == 0) {
             apiResult.setStatus(501);
             apiResult.setMsg("密码修改失败");
             return apiResult;

@@ -14,27 +14,27 @@ public class ProductService {
     @Autowired
     private ProductDao productDao;
 
-    public Product findProductById(Integer productId){
+    public Product findProductById(Integer productId) {
         Product product = productDao.findProductById(productId);
         return product;
     }
 
-    public ArrayList<Product> findProducts(){
+    public ArrayList<Product> findProducts() {
         ArrayList<Product> products = productDao.findProducts();
         return products;
     }
 
-    public Integer addProduct(ProductCreateDto productCreateDto){
+    public Integer addProduct(ProductCreateDto productCreateDto) {
         Integer state = productDao.insertProduct(productCreateDto);
         return state;
     }
 
-    public Integer modifyProduct(ProductEditDto productEditDto){
+    public Integer modifyProduct(ProductEditDto productEditDto) {
         Integer state = productDao.updateProduct(productEditDto);
         return state;
     }
 
-    public Integer deleteProduct(Integer id){
+    public Integer deleteProduct(Integer id) {
         return productDao.deleteProduct(id);
     }
 }

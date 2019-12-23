@@ -7,19 +7,15 @@ import java.util.concurrent.ConcurrentHashMap;
 public class AbstractEnum {
 
 
-
     private static final Map<String, AbstractEnum> nameEnumMap = new ConcurrentHashMap<>();
-
 
 
     protected String name;
 
 
-
-    protected AbstractEnum () {
+    protected AbstractEnum() {
 
     }
-
 
 
     protected AbstractEnum(String name) {
@@ -38,9 +34,6 @@ public class AbstractEnum {
     }
 
 
-
-
-
     public String toString() {
 
         return this.name;
@@ -48,13 +41,11 @@ public class AbstractEnum {
     }
 
 
-
     public static AbstractEnum valueOf(String s, String name) {
 
         if (name == null)
 
             throw new NullPointerException("Name is null");
-
 
 
         AbstractEnum result = nameEnumMap.get(name);
@@ -66,7 +57,6 @@ public class AbstractEnum {
         }
 
 
-
         throw new IllegalArgumentException(
 
                 "No enum constant exists, name is." + name);
@@ -74,11 +64,9 @@ public class AbstractEnum {
     }
 
 
-
     public static void init() {
 
     }
-
 
 
 }

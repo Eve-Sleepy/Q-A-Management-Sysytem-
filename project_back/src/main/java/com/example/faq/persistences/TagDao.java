@@ -10,9 +10,13 @@ import java.util.Map;
 
 @Repository
 public interface TagDao {
-    ArrayList<Map<String,Object>> getTagIdNamesArr();
+    ArrayList<Map<String, Object>> getTagIdNamesArr();
+
     Integer addTag(Tag tag);
+
     List<Tag> getTagList();
+
     List<Tag> findTagListByIds(@Param("tagIdGroup") String[] tagIdGroup);
+
     Tag findTagIdByName(@Param("tagName") String tagName);
 }

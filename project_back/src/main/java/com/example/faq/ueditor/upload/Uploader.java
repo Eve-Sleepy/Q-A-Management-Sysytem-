@@ -14,11 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 // Referenced classes of package com.example.faq.ueditor.upload:
 //            Base64Uploader, BinaryUploader
 
-public class Uploader
-{
+public class Uploader {
 
-    public Uploader(HttpServletRequest request, Map conf)
-    {
+    public Uploader(HttpServletRequest request, Map conf) {
         this.request = null;
         this.conf = null;
         this.request = request;
@@ -26,15 +24,16 @@ public class Uploader
     }
 
     public final State doExec() throws IOException {
-        String filedName = (String)conf.get("fieldName");
+        String filedName = (String) conf.get("fieldName");
         State state = null;
-        if("true".equals(conf.get("isBase64"))) {
+        if ("true".equals(conf.get("isBase64"))) {
             state = Base64Uploader.save(request.getParameter(filedName), conf);
         } else {
             state = BinaryUploader.save(request, conf);
         }
         return state;
     }
+
     private HttpServletRequest request;
     private Map conf;
 }

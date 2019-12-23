@@ -7,32 +7,30 @@ package com.example.faq.ueditor.upload;
 
 import com.example.faq.ueditor.PathFormat;
 import com.example.faq.ueditor.define.*;
+
 import java.util.Map;
+
 import org.apache.commons.codec.binary.Base64;
 
 // Referenced classes of package com.example.faq.ueditor.upload:
 //            StorageManager
 
-public final class Base64Uploader
-{
+public final class Base64Uploader {
 
-    public Base64Uploader()
-    {
+    public Base64Uploader() {
     }
 
-    public static State save(String content, Map conf)
-    {
+    public static State save(String content, Map conf) {
         byte data[] = decode(content);
-        long maxSize = ((Long)conf.get("maxSize")).longValue();
-        if(!validSize(data, maxSize))
+        long maxSize = ((Long) conf.get("maxSize")).longValue();
+        if (!validSize(data, maxSize))
             return new BaseState(false, 1);
         String suffix = FileType.getSuffix("JPG");
-        String savePath = PathFormat.parse((String)conf.get("savePath"), (String)conf.get("filename"));
+        String savePath = PathFormat.parse((String) conf.get("savePath"), (String) conf.get("filename"));
         savePath = (new StringBuilder(String.valueOf(savePath))).append(suffix).toString();
-        String physicalPath = (new StringBuilder(String.valueOf((String)conf.get("rootPath")))).append(savePath).toString();
+        String physicalPath = (new StringBuilder(String.valueOf((String) conf.get("rootPath")))).append(savePath).toString();
         State storageState = StorageManager.saveBinaryFile(data, physicalPath);
-        if(storageState.isSuccess())
-        {
+        if (storageState.isSuccess()) {
             storageState.putInfo("url", PathFormat.format(savePath));
             storageState.putInfo("type", suffix);
             storageState.putInfo("original", "");
@@ -40,13 +38,11 @@ public final class Base64Uploader
         return storageState;
     }
 
-    private static byte[] decode(String content)
-    {
+    private static byte[] decode(String content) {
         return Base64.decodeBase64(content);
     }
 
-    private static boolean validSize(byte data[], long length)
-    {
-        return (long)data.length <= length;
+    private static boolean validSize(byte data[], long length) {
+        return (long) data.length <= length;
     }
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.faq.persistences.TokenDao">
-<select id="findTokenByUserId" resultType="com.example.faq.models.Token">
+    <select id="findTokenByUserId" resultType="com.example.faq.models.Token">
         select *
         from users
         where id=#{userid};
 </select>
-    <insert id="addToken" parameterType="com.example.faq.models.Token"   useGeneratedKeys="true" keyProperty="id">
+    <insert id="addToken" parameterType="com.example.faq.models.Token" useGeneratedKeys="true" keyProperty="id">
          insert into users(userid,token,buildtime)
         values (#{id},#{token},#{buildtime});
     </insert>
-    <update id="updataToken" parameterType="com.example.faq.models.Token"   useGeneratedKeys="true" keyProperty="id">
+    <update id="updataToken" parameterType="com.example.faq.models.Token" useGeneratedKeys="true" keyProperty="id">
         update users set token=#{token},buildtime=#{buildtime}
         where id=#{userid} ;
     </update>

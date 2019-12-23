@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface TagForDocDao {
     List<Tag> findTagsByDocId(Integer docId);
+
     Integer insertTagsForDoc(TagForDoc tagForDoc);
+
     Integer deleteTagsForDoc(Integer docId);
 }

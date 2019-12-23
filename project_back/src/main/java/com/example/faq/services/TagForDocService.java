@@ -14,13 +14,13 @@ public class TagForDocService {
     @Autowired
     private TagForDocDao tagForDocDao;
 
-    public ArrayList<String> findTagNameGroupByDocId(Integer id){
+    public ArrayList<String> findTagNameGroupByDocId(Integer id) {
         ArrayList<String> tagNameGroup = new ArrayList<>();
         List<Tag> tags = tagForDocDao.findTagsByDocId(id);
-        for(Tag tag:tags){
+        for (Tag tag : tags) {
             tagNameGroup.add(tag.getName());
         }
-        return  tagNameGroup;
+        return tagNameGroup;
     }
 
     public Integer addTagForDoc(TagForDoc tagForDoc) {

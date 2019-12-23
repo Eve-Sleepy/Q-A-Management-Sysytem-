@@ -6,23 +6,19 @@
 package com.example.faq.ueditor;
 
 
-public class Encoder
-{
+public class Encoder {
 
-    public Encoder()
-    {
+    public Encoder() {
     }
 
-    public static String toUnicode(String input)
-    {
+    public static String toUnicode(String input) {
         StringBuilder builder = new StringBuilder();
         char chars[] = input.toCharArray();
         char ac[];
         int j = (ac = chars).length;
-        for(int i = 0; i < j; i++)
-        {
+        for (int i = 0; i < j; i++) {
             char ch = ac[i];
-            if(ch < '\u0100')
+            if (ch < '\u0100')
                 builder.append(ch);
             else
                 builder.append((new StringBuilder("\\u")).append(Integer.toHexString(ch & 0xffff)).toString());

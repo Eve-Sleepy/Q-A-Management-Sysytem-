@@ -14,11 +14,18 @@ import java.util.Map;
 @Repository
 public interface DocDao {
     Doc findDocById(Integer id);
+
     Doc findDocByProductId(Integer id);
+
     List<Doc> selectDocList(@Param("docSearchDto") DocSearchDto docSearchDto);
+
     Integer insertDoc(DocCreateDto docCreateDto);
+
     Integer updateDoc(DocEditDto docEditDto);
+
     Integer deleteDoc(Integer id);
-    Integer getDeptBelongNum(@Param("deptQuery") Map<String,Object> deptQuery);
+
+    Integer getDeptBelongNum(@Param("deptQuery") Map<String, Object> deptQuery);
+
     Integer deleteDocByProductId(Integer productId);
 }

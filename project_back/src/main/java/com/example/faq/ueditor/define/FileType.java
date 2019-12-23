@@ -8,31 +8,26 @@ package com.example.faq.ueditor.define;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FileType
-{
+public class FileType {
 
-    public FileType()
-    {
+    public FileType() {
     }
 
-    public static String getSuffix(String key)
-    {
-        return (String)types.get(key);
+    public static String getSuffix(String key) {
+        return (String) types.get(key);
     }
 
-    public static String getSuffixByFilename(String filename)
-    {
+    public static String getSuffixByFilename(String filename) {
         return filename.substring(filename.lastIndexOf(".")).toLowerCase();
     }
 
     public static final String JPG = "JPG";
     private static final Map types = new HashMap() {
 
-            
-            {
-                put("JPG", ".jpg");
-            }
-    }
-;
+
+        {
+            put("JPG", ".jpg");
+        }
+    };
 
 }

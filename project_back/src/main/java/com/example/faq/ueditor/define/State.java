@@ -6,8 +6,7 @@
 package com.example.faq.ueditor.define;
 
 
-public interface State
-{
+public interface State {
 
     public abstract boolean isSuccess();
 
