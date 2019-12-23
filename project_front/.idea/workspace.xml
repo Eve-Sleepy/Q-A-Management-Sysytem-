@@ -2,21 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="750932c3-dfd9-4996-b40d-614b209f4fc2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/build.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/build.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DocumentList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/MsgList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MsgList.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SiftDoc.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SiftDoc.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/error/error.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/error/error.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/index/Search.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/index/Search.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/MainContent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/MainContent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/PersonalSpace.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/PersonalSpace.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/check-versions.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/check-versions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/vue-loader.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/vue-loader.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/webpack.base.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.base.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/webpack.dev.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.dev.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/webpack.prod.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/webpack.prod.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/api.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/api.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/prod.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/prod.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/LeftNav/LeftNav.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/LeftNav/LeftNav.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/LeftNav/ProductList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/LeftNav/ProductList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/RightContent/Position.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/RightContent/Position.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentDetailEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentDetailEdit.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentNewDoc.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MainContent/RightContent/RightContentNewDoc.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,6 +137,7 @@
       <workItem from="1576944278216" duration="268000" />
       <workItem from="1576944756246" duration="3976000" />
       <workItem from="1577110128011" duration="132000" />
+      <workItem from="1577113998531" duration="144000" />
     </task>
     <servers />
   </component>
@@ -146,7 +149,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

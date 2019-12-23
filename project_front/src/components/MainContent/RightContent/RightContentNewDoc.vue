@@ -24,8 +24,8 @@
             <!-- 选择版本 -->
             <div class="edition_input">
                 <span>版本：</span>
-                <el-input  size="small" v-model="document.edition"
-                           placeholder="请输入版本">
+                <el-input size="small" v-model="document.edition"
+                          placeholder="请输入版本">
                 </el-input>
             </div>
             <!-- 选择部门 -->
@@ -40,27 +40,27 @@
                     </el-option>
                 </el-select>
             </div>
-        <el-dialog title="选择需要发送私信的用户(非必填)" :visible.sync="dialogFormVisible">
-            <div style="text-align: center">
-                <el-transfer
-                        style="text-align: left; display: inline-block"
-                        v-model="value4"
-                        filterable
-                        :left-default-checked="[]"
-                        :right-default-checked="[]"
-                        :titles="['用户列表', '发送列表']"
-                        :button-texts="['取消发送', '选定发送']"
-                        :format="{noChecked: '${total}',hasChecked: '${checked}/${total}'}"
-                        @change="handleChange" :data="data">
-                    <span slot-scope="{ option }">{{ option.label }}</span>
-                </el-transfer>
-            </div>
-            <div slot="footer" class="dialog-footer">
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="submitForm(1)">确 定</el-button>
-            </div>
-        </el-dialog>
-    </div>
+            <el-dialog title="选择需要发送私信的用户(非必填)" :visible.sync="dialogFormVisible">
+                <div style="text-align: center">
+                    <el-transfer
+                            style="text-align: left; display: inline-block"
+                            v-model="value4"
+                            filterable
+                            :left-default-checked="[]"
+                            :right-default-checked="[]"
+                            :titles="['用户列表', '发送列表']"
+                            :button-texts="['取消发送', '选定发送']"
+                            :format="{noChecked: '${total}',hasChecked: '${checked}/${total}'}"
+                            @change="handleChange" :data="data">
+                        <span slot-scope="{ option }">{{ option.label }}</span>
+                    </el-transfer>
+                </div>
+                <div slot="footer" class="dialog-footer">
+                    <el-button @click="dialogFormVisible = false">取 消</el-button>
+                    <el-button type="primary" @click="submitForm(1)">确 定</el-button>
+                </div>
+            </el-dialog>
+        </div>
 </template>
 <script>
     import positionhit from './Position'
@@ -71,44 +71,44 @@
 
     export default {
         name: 'rightContentNewDoc',
-        props:['productId','productName'],
-        components:{
-            "positionhit":positionhit,
-            "vue-ueditor-wrap":VueUeditorWrap
+        props: ['productId', 'productName'],
+        components: {
+            "positionhit": positionhit,
+            "vue-ueditor-wrap": VueUeditorWrap
         },
-        data(){
-            return{
+        data() {
+            return {
                 decode: jwtDecode(window.localStorage.Authorization),
                 isAdmin: null,
-                tagInputVisible:false,
-                tagInputValue:null,
-                document:{
+                tagInputVisible: false,
+                tagInputValue: null,
+                document: {
                     authorId: null,
-                    title:'',
+                    title: '',
                     productId: null,
-                    edition:'',
-                    deptBelong:null,
+                    edition: '',
+                    deptBelong: null,
                     tagGroup: [],
-                    content:'',
+                    content: '',
                     msgGroup: []
                 },
-                products:[],
-                dept:[
+                products: [],
+                dept: [
                     {
-                        id:0,
-                        name:"设计"
+                        id: 0,
+                        name: "设计"
                     },
                     {
-                        id:1,
-                        name:"开发"
+                        id: 1,
+                        name: "开发"
                     },
                     {
-                        id:2,
-                        name:"实施"
+                        id: 2,
+                        name: "实施"
                     },
                     {
-                        id:3,
-                        name:"测试"
+                        id: 3,
+                        name: "测试"
                     }
                 ],
                 //Ueditor配置
@@ -134,7 +134,7 @@
                 dialogFormVisible: false,
             }
         },
-        methods:{
+        methods: {
             handleChange(value, direction, movedKeys) {
             },
             // 删除标签
@@ -151,46 +151,46 @@
             //创建新标签
             handleInputConfirm() {
                 let inputValue = this.tagInputValue;
-                if (inputValue){
+                if (inputValue) {
                     //去除重复标签
-                    for(let i = 0;i<this.document.tagGroup.length;++i){
-                        if(inputValue === this.document.tagGroup[i]){
+                    for (let i = 0; i < this.document.tagGroup.length; ++i) {
+                        if (inputValue === this.document.tagGroup[i]) {
                             alert("重复标签");
                             this.tagInputVisible = false;
-                            this.tagInputValue=null;
+                            this.tagInputValue = null;
                             return;
                         }
                     }
                     this.document.tagGroup.push(inputValue);
                 }
                 this.tagInputVisible = false;
-                this.tagInputValue=null;
+                this.tagInputValue = null;
             },
             // 提交
-            submitForm(){
+            submitForm() {
                 this.document.msgGroup = this.value4
 
-                if(this.document.title == ""){
+                if (this.document.title == "") {
                     alert('标题不能为空');
                     this.dialogFormVisible = false
                     return false;
                 }
-                if(this.document.productId == null){
+                if (this.document.productId == null) {
                     alert('请选择产品');
                     this.dialogFormVisible = false
                     return false;
                 }
-                if(this.document.edition == ""){
+                if (this.document.edition == "") {
                     alert('版本不能为空');
                     this.dialogFormVisible = false
                     return false;
                 }
-                if(this.document.deptBelong == null){
+                if (this.document.deptBelong == null) {
                     alert('请选择部门');
                     this.dialogFormVisible = false
                     return false;
                 }
-                if(this.document.content == ""){
+                if (this.document.content == "") {
                     alert('请输入内容');
                     this.dialogFormVisible = false
                     return false;
@@ -198,38 +198,38 @@
                 this.$axios({
                     method: 'post',
                     url: "/api/doc/create",
-                    headers: {'Authorization':window.localStorage['Authorization']},
+                    headers: {'Authorization': window.localStorage['Authorization']},
                     data: this.document
-                }).then(res=> {
-                    if(res.data.status === 200){
+                }).then(res => {
+                    if (res.data.status === 200) {
                         //提示上传成功
-                        if (this.document.msgGroup.length !== 0){
+                        if (this.document.msgGroup.length !== 0) {
                             this.$message({message: '文档上传成功及私信发送成功', type: 'success'});
-                        }else{
+                        } else {
                             this.$message({message: '文档上传成功', type: 'success'});
                         }
 
                         //跳转到文章详情页
-                        this.$router.push({name:"detail",params:{docId:res.data.data.docId}});
+                        this.$router.push({name: "detail", params: {docId: res.data.data.docId}});
                     }
                 })
-                    .catch( error => {
+                    .catch(error => {
                     });
 
                 this.dialogFormVisible = false
 
             }
         },
-        created(){
+        created() {
             this.document.authorId = Number(this.decode.userId)
             this.isAdmin = Number(this.decode.isAdmin)
             // 获取产品列表
             this.$axios({
                 method: 'get',
                 url: "/api/product/dropDownList",
-                headers: {'Authorization':window.localStorage['Authorization']}
+                headers: {'Authorization': window.localStorage['Authorization']}
             }).then((res) => {
-                if(res.data.status === 200){
+                if (res.data.status === 200) {
                     this.products = res.data.data;
                 }
             });
@@ -238,14 +238,14 @@
             this.$axios({
                 method: 'get',
                 url: "/api/user/dropDownList",
-                headers: {'Authorization':window.localStorage['Authorization']}
+                headers: {'Authorization': window.localStorage['Authorization']}
             }).then((res) => {
-                if(res.status === 200){
+                if (res.status === 200) {
                     let userArr = res.data.data.arr
-                    userArr.forEach(user=>{
+                    userArr.forEach(user => {
                         this.data.push({
                             key: user.id,
-                            label: `${ user.username }`,
+                            label: `${user.username}`,
                             disabled: Number(this.decode.userId) === user.id
                         });
                     });
@@ -261,74 +261,88 @@
         margin-left: 20px;
         padding: 6px 5px;
     }
+
     /* 白色背景框 */
-    .editarea{
+    .editarea {
         position: relative;
         width: 924px;
         background-color: white;
-        border-radius:10px;
+        border-radius: 10px;
         margin-top: 24px;
         margin-bottom: 24px;
-        padding:24px 48px;
+        padding: 24px 48px;
     }
+
     .editarea .title_input,
     .editarea .edition_input,
-    .editarea>.el-select,
-    .editarea>.dept_select
-    {
+    .editarea > .el-select,
+    .editarea > .dept_select {
         margin-bottom: 16px;
     }
+
     /* 标签的下边距 */
-    .editarea .tags_input{
+    .editarea .tags_input {
         margin-bottom: 20px;
     }
 
     /* ---------title ---------*/
-    .editarea .title_input{
+    .editarea .title_input {
         width: 100%;
     }
-    .editarea .title_input>.el-textarea{
+
+    .editarea .title_input > .el-textarea {
         max-width: calc(100% - 82px - 64px);
     }
-    .editarea .title_input>.el-input>span{
+
+    .editarea .title_input > .el-input > span {
         color: #909399;
         font-size: 12px;
     }
+
     /* ------保存按钮------ */
-    .editarea .title_input>.el-button{
+    .editarea .title_input > .el-button {
         background-color: #41B298;
         border: none;
         float: right;
     }
-    .editarea .title_input>.el-button:hover{
+
+    .editarea .title_input > .el-button:hover {
         opacity: 0.8;
     }
-    .editarea .title_input>.el-button>span{
-        color:white;
+
+    .editarea .title_input > .el-button > span {
+        color: white;
 
     }
+
     /* 版本、部门 */
-    .editarea .edition_input,.dept_select {
+    .editarea .edition_input, .dept_select {
         display: inline-block;
     }
-    .editarea .edition_input>.el-input{
-        width:100px;
-    }
-    /* 产品、版本 */
-    .editarea>.el-select,.edition_input{
-        margin-right: 24px;
-    }
-    /* 部门 */
-    .dept_select>.el-select{
+
+    .editarea .edition_input > .el-input {
         width: 100px;
     }
+
+    /* 产品、版本 */
+    .editarea > .el-select, .edition_input {
+        margin-right: 24px;
+    }
+
+    /* 部门 */
+    .dept_select > .el-select {
+        width: 100px;
+    }
+
     /* ---标签--- */
-    .tags_input .el-tag{
+    .tags_input .el-tag {
         border-radius: 100px;
     }
+
     .el-tag + .el-tag {
         margin-left: 10px;
     }
+
     .button-new-tag {
         margin-left: 10px;
         height: 32px;
@@ -337,28 +351,32 @@
         padding-bottom: 0;
         border: none;
     }
+
     .input-new-tag {
         width: 90px;
         margin-left: 10px;
         vertical-align: bottom;
     }
-    .button-new-tag>span{
+
+    .button-new-tag > span {
         font-size: 12px;
         color: #666;
     }
 
-    @media screen and (max-width:1184px) {
-        .editarea{
+    @media screen and (max-width: 1184px) {
+        .editarea {
             width: calc(924px - 1184px + 100vw);
         }
     }
-    @media screen and (max-width: 1096px){
-        .editarea{
+
+    @media screen and (max-width: 1096px) {
+        .editarea {
             width: calc(924px - 1184px + 100vw);
         }
     }
-    @media screen and (max-width: 768px){
-        .editarea{
+
+    @media screen and (max-width: 768px) {
+        .editarea {
             width: calc(924px - 1184px + 100vw + 180px) !important;
         }
     }

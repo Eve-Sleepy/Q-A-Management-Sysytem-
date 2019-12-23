@@ -22,30 +22,31 @@
     import positionhit from './Position'
     import documentList from '../../DocumentList'
     import siftdoc from '../../SiftDoc'
+
     export default {
         name: 'rightContentList',
-        props:['productId','productName'],
-        components:{
-            "positionhit":positionhit,
-            "documentList":documentList,
-            "siftdoc":siftdoc
+        props: ['productId', 'productName'],
+        components: {
+            "positionhit": positionhit,
+            "documentList": documentList,
+            "siftdoc": siftdoc
         },
-        data(){
-            return{
+        data() {
+            return {
                 keyword: '',
-                sortway:null,
-                authorId:null
+                sortway: null,
+                authorId: null
             }
         },
-        methods:{
+        methods: {
             //获取timeId排序方式
-            getSortway(id){
+            getSortway(id) {
                 this.sortway = id;
             },
-            getAuthorId(id){
+            getAuthorId(id) {
                 this.authorId = id;
             },
-            getKeyword(keyword){
+            getKeyword(keyword) {
                 this.keyword = keyword;
             }
         }
@@ -54,8 +55,8 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-    @media screen and (max-width: 768px){
-        .documentlist{
+    @media screen and (max-width: 768px) {
+        .documentlist {
             width: calc(924px - 1184px + 100vw + 180px) !important;
         }
     }
